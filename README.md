@@ -1,1 +1,1148 @@
-# shede.ai.agent
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>景津装备股份有限公司 - 2026年奖补项目申报清单</title>
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2d5f8a;
+            --accent: #e8943a;
+            --accent-light: #f5b971;
+            --bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #6c7a89;
+            --border: #dce3ec;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #3498db;
+            --danger: #e74c3c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .header h1 span {
+            color: var(--accent-light);
+            font-weight: 400;
+            font-size: 16px;
+            margin-left: 12px;
+        }
+        .header-meta {
+            font-size: 13px;
+            opacity: 0.85;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--primary);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+        }
+        .nav a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            padding: 14px 22px;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+        }
+        .nav a:hover, .nav a.active {
+            color: white;
+            background: rgba(255,255,255,0.05);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 40px 60px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 120px;
+        }
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Card */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 28px 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 17px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .card p {
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.85;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .info-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 22px 26px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+        }
+        .info-item .label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .info-item .value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Badge */
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .badge-national {
+            background: linear-gradient(135deg, #e74c3c22, #e74c3c11);
+            color: #c0392b;
+            border: 1px solid #e74c3c44;
+        }
+        .badge-province {
+            background: linear-gradient(135deg, #3498db22, #3498db11);
+            color: #2471a3;
+            border: 1px solid #3498db44;
+        }
+        .badge-city {
+            background: linear-gradient(135deg, #27ae6022, #27ae6011);
+            color: #1e8449;
+            border: 1px solid #27ae6044;
+        }
+        .badge-other {
+            background: linear-gradient(135deg, #8e44ad22, #8e44ad11);
+            color: #6c3483;
+            border: 1px solid #8e44ad44;
+        }
+
+        /* Business cards */
+        .biz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+        .biz-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .biz-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .biz-card .biz-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+        .biz-card h4 {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .biz-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            background: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 1200px;
+        }
+        thead th {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        tbody tr:hover {
+            background: #f0f5ff;
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .level-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .level-national { background: #fde8e8; color: #c0392b; }
+        .level-province { background: #e8f0fe; color: #2471a3; }
+        .level-city { background: #e8f8e8; color: #1e8449; }
+        .level-district { background: #f3e8fd; color: #6c3483; }
+        .amount {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 15px;
+        }
+        .category-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            background: #f0f0f0;
+            color: #555;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            padding: 18px 24px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .timeline-item .year {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .timeline-item h4 {
+            font-size: 15px;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .timeline-item p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+        .status-done {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            background: #27ae6022;
+            color: #27ae60;
+            font-weight: 600;
+        }
+        .status-progress {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            background: #f39c1222;
+            color: #f39c12;
+            font-weight: 600;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+        .stat-card .stat-num {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .stat-label {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+        }
+
+        /* Filter buttons */
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 18px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: white;
+            color: var(--text);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Policy link styles */
+        .policy-ref {
+            display: inline;
+        }
+        .policy-ref a {
+            color: var(--info);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--info);
+            font-size: 13px;
+            transition: all 0.2s;
+            word-break: break-all;
+        }
+        .policy-ref a:hover {
+            color: var(--primary);
+            border-bottom-style: solid;
+        }
+        .policy-card a {
+            color: var(--info);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--info);
+            transition: all 0.2s;
+        }
+        .policy-card a:hover {
+            color: var(--primary);
+            border-bottom-style: solid;
+        }
+        .ext-icon {
+            display: inline-block;
+            font-size: 10px;
+            margin-left: 2px;
+            opacity: 0.6;
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .nav, .filter-bar { position: static; }
+            .section { page-break-inside: avoid; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 16px; }
+            .header-inner { padding: 16px; flex-direction: column; gap: 8px; }
+            .nav-inner { padding: 0 16px; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="header-inner">
+        <h1>景津装备股份有限公司 <span>2026年度奖补项目申报清单</span></h1>
+        <div class="header-meta">编制日期：2026年6月 &nbsp;|&nbsp; 股票代码：603279.SH</div>
+    </div>
+    <div class="nav">
+        <div class="nav-inner">
+            <a href="#overview" class="active">企业概述</a>
+            <a href="#business">主营业务</a>
+            <a href="#honors">资质与荣誉</a>
+            <a href="#history">近三年项目申请</a>
+            <a href="#projects">可申报项目清单</a>
+            <a href="#policy">政策依据汇总</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Overview Section -->
+    <div class="section" id="overview">
+        <div class="section-title">
+            <div class="icon">1</div>
+            企业概述
+        </div>
+
+        <div class="card">
+            <p>景津装备股份有限公司（股票代码：603279.SH），创立于<strong>1988年</strong>，前身为景津环保股份有限公司，位于素有"九达天衢、神京门户"之称的山东省德州市经济开发区。公司是中国领先的<strong>专业成套过滤装备制造商</strong>，也是全球压滤机产销量第一的企业，已连续<strong>20余年</strong>蝉联世界压滤机产销量冠军。</p>
+            <br>
+            <p>公司占地面积广阔，拥有独立的设计研发部门、研发生产部门和高效率、高素质的研发团队，员工总数超过3000人。2025年度公司实现营业收入<strong>58.18亿元</strong>，净利润<strong>5.21亿元</strong>。产品远销全球<strong>123个国家和地区</strong>，广泛应用于矿物加工、环境保护、新能源、化工、食品饮料、医药等多个领域。</p>
+            <br>
+            <p>公司承担过国家水体污染控制与治理科技重大专项、国家重点研发计划、国家火炬计划、国家新产品计划等多项国家级科研项目，是压滤机国家标准的<strong>主起草单位</strong>，在行业内具有显著的技术引领地位和市场影响力。</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="label">企业全称</div>
+                <div class="value">景津装备股份有限公司</div>
+            </div>
+            <div class="info-item">
+                <div class="label">股票代码</div>
+                <div class="value">603279.SH（上交所主板）</div>
+            </div>
+            <div class="info-item">
+                <div class="label">成立年份</div>
+                <div class="value">1988年</div>
+            </div>
+            <div class="info-item">
+                <div class="label">注册地</div>
+                <div class="value">山东省德州市经济开发区</div>
+            </div>
+            <div class="info-item">
+                <div class="label">法定代表人</div>
+                <div class="value">姜桂廷</div>
+            </div>
+            <div class="info-item">
+                <div class="label">2025年营收</div>
+                <div class="value">58.18 亿元</div>
+            </div>
+            <div class="info-item">
+                <div class="label">2025年净利润</div>
+                <div class="value">5.21 亿元</div>
+            </div>
+            <div class="info-item">
+                <div class="label">员工规模</div>
+                <div class="value">3000+ 人</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Section -->
+    <div class="section" id="business">
+        <div class="section-title">
+            <div class="icon">2</div>
+            主营业务
+        </div>
+
+        <div class="card" style="margin-bottom: 20px;">
+            <p>公司主营业务为<strong>过滤成套装备的生产和销售</strong>，致力于为固液提纯、分离提供专业的成套解决方案。核心产品涵盖各式压滤机整机及配套设备、配件，同时拓展至模块化建筑（E-House）、蒸发系统等新型业务领域。近年来公司积极向新能源（锂电回收）、环保工程等方向延伸，配套设备扩展成效显著。</p>
+        </div>
+
+        <div class="biz-grid">
+            <div class="biz-card">
+                <div class="biz-icon" style="background: #e8f4fd;">&#9881;</div>
+                <h4>压滤机整机</h4>
+                <p>厢式压滤机、隔膜压滤机、板框压滤机、全自动压滤机等全系列固液分离设备，产销量全球第一。</p>
+            </div>
+            <div class="biz-card">
+                <div class="biz-icon" style="background: #fef3e2;">&#128296;</div>
+                <h4>配套设备与配件</h4>
+                <p>滤板、滤布、滤饼输送系统、自动清洗系统等全套配套设备及耗材，形成完整产业链。</p>
+            </div>
+            <div class="biz-card">
+                <div class="biz-icon" style="background: #e8fde8;">&#127970;</div>
+                <h4>E-House 模块化建筑</h4>
+                <p>预制化、模块化设备间/厂房解决方案，集成度高，建设周期短，适用于矿业、能源等领域。</p>
+            </div>
+            <div class="biz-card">
+                <div class="biz-icon" style="background: #fde8f4;">&#128167;</div>
+                <h4>蒸发系统</h4>
+                <p>MVR蒸发系统、多效蒸发器等，广泛应用于工业废水处理、化工浓缩、锂盐提取等领域。</p>
+            </div>
+            <div class="biz-card">
+                <div class="biz-icon" style="background: #f3e8fd;">&#127793;</div>
+                <h4>环保工程服务</h4>
+                <p>工业废水/污泥处理处置整体解决方案，市政污水处理工程，矿山尾矿处理工程EPC总承包。</p>
+            </div>
+            <div class="biz-card">
+                <div class="biz-icon" style="background: #fef9e2;">&#128267;</div>
+                <h4>新能源领域拓展</h4>
+                <p>锂电池回收提取、盐湖提锂等新能源材料加工设备及技术服务，是公司新的增长极。</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h3>下游应用领域</h3>
+            <div class="badge-group" style="margin-top: 8px;">
+                <span class="badge badge-national">&#9874; 矿物加工</span>
+                <span class="badge badge-province">&#127758; 环境保护</span>
+                <span class="badge badge-city">&#128267; 新能源（锂电）</span>
+                <span class="badge badge-other">&#9883; 化工</span>
+                <span class="badge badge-national">&#127860; 食品饮料</span>
+                <span class="badge badge-province">&#128138; 医药</span>
+                <span class="badge badge-city">&#128640; 航空航天</span>
+                <span class="badge badge-other">&#128218; 造纸</span>
+                <span class="badge badge-national">&#127981; 市政基建</span>
+                <span class="badge badge-province">&#9853; 砂石骨料</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Honors Section -->
+    <div class="section" id="honors">
+        <div class="section-title">
+            <div class="icon">3</div>
+            已获得的资质与荣誉
+        </div>
+
+        <div class="card">
+            <h3>国家级资质与荣誉</h3>
+            <div class="badge-group">
+                <span class="badge badge-national">&#127942; 中国制造业单项冠军示范企业</span>
+                <span class="badge badge-national">&#127941; 国家高新技术企业</span>
+                <span class="badge badge-national">&#128218; 国家知识产权优势企业（2022年认定）</span>
+                <span class="badge badge-national">&#127970; 国家企业技术中心</span>
+                <span class="badge badge-national">&#127775; 压滤机国家标准主起草单位</span>
+                <span class="badge badge-national">&#128161; 国家重点新产品计划承担单位</span>
+                <span class="badge badge-national">&#128293; 国家火炬计划承担单位</span>
+                <span class="badge badge-national">&#128167; 国家水体污染控制与治理科技重大专项承担单位</span>
+                <span class="badge badge-national">&#128640; 国家重点研发计划承担单位</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>省级资质与荣誉</h3>
+            <div class="badge-group">
+                <span class="badge badge-province">&#127942; 山东省制造业单项冠军企业</span>
+                <span class="badge badge-province">&#127775; 山东省专精特新企业</span>
+                <span class="badge badge-province">&#128218; 山东省知识产权示范企业</span>
+                <span class="badge badge-province">&#127970; 山东省技术创新示范企业</span>
+                <span class="badge badge-province">&#128295; 山东省工程技术研究中心</span>
+                <span class="badge badge-province">&#127891; 山东省博士后创新实践基地</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>行业与国际荣誉</h3>
+            <div class="badge-group">
+                <span class="badge badge-city">&#127942; 全球压滤机产销量连续20年第一</span>
+                <span class="badge badge-city">&#127760; 国际发明展金奖、银奖</span>
+                <span class="badge badge-city">&#128220; 多项国际发明专利</span>
+                <span class="badge badge-city">&#128176; 中国驰名商标</span>
+                <span class="badge badge-other">&#128196; 拥有专利870余项</span>
+                <span class="badge badge-other">&#127758; 产品远销123个国家和地区</span>
+                <span class="badge badge-city">&#128640; ISO 9001/14001/45001 三体系认证</span>
+                <span class="badge badge-other">&#128203; CE认证（欧盟）</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Section -->
+    <div class="section" id="history">
+        <div class="section-title">
+            <div class="icon">4</div>
+            近三年项目申请情况（2023-2025）
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">2025年度</div>
+                <h4>山东省智能工厂/数字化车间认定申报</h4>
+                <p>基于公司数字化转型成果，申报省级智能制造示范认定，聚焦压滤机智能生产线升级项目。 <span class="status-done">已通过</span></p>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2025年度</div>
+                <h4>国家级设备更新与技术改造专项</h4>
+                <p>申报超长期特别国债支持的制造业设备更新项目，获得国家级技改专项资金支持。 <span class="status-done">已获批</span></p>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2025年度</div>
+                <h4>山东省绿色工厂认定</h4>
+                <p>依据公司绿色制造体系建设成果，申报省级绿色工厂认定。 <span class="status-progress">评审中</span></p>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2024年度</div>
+                <h4>山东省技术改造专项资金项目</h4>
+                <p>压滤机智能化生产线技术改造项目，获省级技改专项贷款贴息支持。 <span class="status-done">已获批</span></p>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2024年度</div>
+                <h4>国家知识产权优势企业复核</h4>
+                <p>通过2022年认定后的年度复核评估，继续保持国家知识产权优势企业资质。 <span class="status-done">已通过</span></p>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2024年度</div>
+                <h4>德州市科技创新奖励</h4>
+                <p>新型高效隔膜压滤机研发及产业化项目获市级科技进步奖。 <span class="status-done">已获奖</span></p>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2023年度</div>
+                <h4>国家重点研发计划课题</h4>
+                <p>参与国家重点研发计划"固废资源化"重点专项，承担工业固废高效脱水装备研发课题。 <span class="status-done">已结题</span></p>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2023年度</div>
+                <h4>山东省首台（套）重大技术装备认定</h4>
+                <p>大型智能高压隔膜压滤机组获省级首台套认定，享受保险补偿政策。 <span class="status-done">已认定</span></p>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2023年度</div>
+                <h4>德州市专精特新"小巨人"培育</h4>
+                <p>作为制造业单项冠军企业参与市级小巨人培育计划，获得专项政策扶持。 <span class="status-done">已通过</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="section" id="projects">
+        <div class="section-title">
+            <div class="icon">5</div>
+            2026年可申报奖补项目清单
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-num">16</div>
+                <div class="stat-label">可申报项目总数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">~4,680</div>
+                <div class="stat-label">预计奖补总额（万元）</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">5</div>
+                <div class="stat-label">国家级项目</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">11</div>
+                <div class="stat-label">省/市/区级项目</div>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterTable('all')">全部</button>
+            <button class="filter-btn" onclick="filterTable('national')">国家级</button>
+            <button class="filter-btn" onclick="filterTable('province')">省级</button>
+            <button class="filter-btn" onclick="filterTable('city')">市级</button>
+            <button class="filter-btn" onclick="filterTable('district')">区级</button>
+        </div>
+
+        <div class="table-wrapper">
+            <table id="projectTable">
+                <thead>
+                    <tr>
+                        <th style="width:40px">序号</th>
+                        <th style="min-width:180px">可申报项目名称</th>
+                        <th style="min-width:100px">项目类别</th>
+                        <th style="min-width:110px">归口部门</th>
+                        <th style="min-width:80px">申报层级</th>
+                        <th style="min-width:100px">预计奖补金额（万元）</th>
+                        <th style="min-width:240px">申报核心条件</th>
+                        <th style="min-width:220px">所需材料</th>
+                        <th style="min-width:220px">政策依据（官方文件）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 国家级项目 -->
+                    <tr data-level="national">
+                        <td>1</td>
+                        <td><strong>国家级制造业单项冠军复核/产品认定</strong></td>
+                        <td><span class="category-tag">企业培育</span></td>
+                        <td>工信部</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td class="amount">200</td>
+                        <td>主导产品市场占有率全球/国内领先；具备持续创新能力；近三年无安全、质量事故；已获省级单项冠军认定</td>
+                        <td>申请书、近三年审计报告、市场占有率证明（行业协会出具）、知识产权清单、企业信用报告</td>
+                        <td class="policy-ref"><a href="https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2016/art_4f38b2d8398744d68c480f53bf2d65ed.html" target="_blank" rel="noopener">《制造业单项冠军企业培育提升专项行动实施方案》<span class="ext-icon">&#8599;</span></a>（工信部产业〔2016〕105号）；年度申报通知</td>
+                    </tr>
+                    <tr data-level="national">
+                        <td>2</td>
+                        <td><strong>国家级绿色工厂认定</strong></td>
+                        <td><span class="category-tag">绿色制造</span></td>
+                        <td>工信部</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td class="amount">100-200</td>
+                        <td>已获省级绿色工厂认定；建立绿色制造管理体系；主要指标（用地集约化、原料无害化、生产洁净化、废物资源化、能源低碳化）达到行业领先水平</td>
+                        <td>绿色工厂自评价报告、第三方评价报告、能源审计报告、环境管理体系认证、清洁生产审核报告</td>
+                        <td class="policy-ref"><a href="https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_4d49856593b14d9bb89c88056365debf.html" target="_blank" rel="noopener">《绿色工厂评价通则》及年度绿色制造名单推荐通知<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <tr data-level="national">
+                        <td>3</td>
+                        <td><strong>智能制造示范工厂/优秀场景</strong></td>
+                        <td><span class="category-tag">智能制造</span></td>
+                        <td>工信部</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td class="amount">300-500</td>
+                        <td>智能制造水平国内领先；已建成数字化车间/智能工厂；覆盖设计、生产、管理全流程数字化；具有可复制推广的示范价值</td>
+                        <td>智能制造示范工厂申报书、数字化建设方案、系统架构说明、实施效果数据、典型案例报告</td>
+                        <td class="policy-ref"><a href="https://wap.miit.gov.cn/jgsj/zbys/wjfb/art/2021/art_f3952b4a7d0941609d94262da9891542.html" target="_blank" rel="noopener">《"十四五"智能制造发展规划》<span class="ext-icon">&#8599;</span></a>；工信部年度智能制造试点示范行动通知</td>
+                    </tr>
+                    <tr data-level="national">
+                        <td>4</td>
+                        <td><strong>国家重点研发计划项目/课题</strong></td>
+                        <td><span class="category-tag">科技创新</span></td>
+                        <td>科技部</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td class="amount">500-1000</td>
+                        <td>具有行业领先的技术研发能力；承担过国家/省级科研项目；拥有核心自主知识产权；产学研合作基础良好</td>
+                        <td>项目申报书、研究方案、预算书、团队资质、前期研究基础材料、合作单位协议</td>
+                        <td class="policy-ref">国家重点研发计划年度项目申报指南；<a href="https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/gfxwj/gfxwj2024/202404/t20240422_190406.html" target="_blank" rel="noopener">《国家重点研发计划管理暂行办法》<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <tr data-level="national">
+                        <td>5</td>
+                        <td><strong>超长期特别国债 - 设备更新与技术改造专项</strong></td>
+                        <td><span class="category-tag">技术改造</span></td>
+                        <td>国家发改委 / 工信部</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td class="amount">按投资额比例（上不封顶）</td>
+                        <td>属制造业重点领域设备更新项目；项目纳入国家重大项目库；设备投资额不低于一定规模；符合国家产业政策方向</td>
+                        <td>项目可行性研究报告、设备采购合同及发票、项目备案/核准文件、环评批复、资金申请报告</td>
+                        <td class="policy-ref"><a href="https://www.gov.cn/zhengce/content/202403/content_6939232.htm" target="_blank" rel="noopener">《推动大规模设备更新和消费品以旧换新行动方案》<span class="ext-icon">&#8599;</span></a>（国发〔2024〕7号）；发改委年度申报通知</td>
+                    </tr>
+
+                    <!-- 省级项目 -->
+                    <tr data-level="province">
+                        <td>6</td>
+                        <td><strong>山东省制造业创新中心认定</strong></td>
+                        <td><span class="category-tag">创新平台</span></td>
+                        <td>山东省工信厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td class="amount">500</td>
+                        <td>依托行业龙头企业建设；具备独立的研发场地和设备；有明确的技术创新方向和产学研合作机制；研发投入占营收比例达标</td>
+                        <td>创新中心建设方案、法人登记材料、研发团队信息、知识产权证明、产学研合作协议</td>
+                        <td class="policy-ref"><a href="http://gxt.shandong.gov.cn/art/2025/4/16/art_15201_10349534.html" target="_blank" rel="noopener">《山东省制造业创新中心建设工作指引》<span class="ext-icon">&#8599;</span></a>；山东省工信厅年度申报通知</td>
+                    </tr>
+                    <tr data-level="province">
+                        <td>7</td>
+                        <td><strong>山东省首台（套）重大技术装备认定及保险补偿</strong></td>
+                        <td><span class="category-tag">装备创新</span></td>
+                        <td>山东省工信厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td class="amount">100-300</td>
+                        <td>产品具有自主知识产权且达到国内领先/国际先进水平；首次研制或重大技术突破；已通过用户单位验证并实现销售</td>
+                        <td>首台套认定申报表、查新报告、检验报告、用户使用报告、销售合同及发票、知识产权证明</td>
+                        <td class="policy-ref"><a href="http://gxt.shandong.gov.cn/art/2026/5/14/art_15201_10356890.html" target="_blank" rel="noopener">《山东省首台（套）技术装备及关键核心零部件项目认定管理办法》<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <tr data-level="province">
+                        <td>8</td>
+                        <td><strong>山东省"技改专项贷"贴息</strong></td>
+                        <td><span class="category-tag">技术改造</span></td>
+                        <td>山东省工信厅 / 财政厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td class="amount">最高2000（贴息）</td>
+                        <td>项目纳入省级技改导向目录项目库；年度贷款额度达标；项目为制造业技术改造升级；贷款用于设备购置和安装</td>
+                        <td>技改项目备案/核准文件、贷款合同、设备采购合同及发票、项目进度报告、财务审计报告</td>
+                        <td class="policy-ref"><a href="http://gxt.shandong.gov.cn/art/2026/4/29/art_15201_10356658.html" target="_blank" rel="noopener">《山东省工业企业技术改造升级导向目录》<span class="ext-icon">&#8599;</span></a>；<a href="http://fgw.shandong.gov.cn/art/2023/9/27/art_91572_10414894.html" target="_blank" rel="noopener">"技改专项贷"贴息实施细则<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <tr data-level="province">
+                        <td>9</td>
+                        <td><strong>山东省设备更新奖补</strong></td>
+                        <td><span class="category-tag">设备更新</span></td>
+                        <td>山东省工信厅 / 财政厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td class="amount">最高500</td>
+                        <td>设备购置费用不低于1000万元；设备属于先进适用设备；项目实施后技术水平和产出效率显著提升</td>
+                        <td>设备购置清单及发票、项目可行性研究报告、设备先进性说明、节能/环保效益评估报告</td>
+                        <td class="policy-ref"><a href="http://gxt.shandong.gov.cn/art/2026/6/2/art_15201_10357290.html" target="_blank" rel="noopener">山东省工业和信息化领域设备更新奖补政策实施细则<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <tr data-level="province">
+                        <td>10</td>
+                        <td><strong>山东省绿色制造单位节能降碳奖补</strong></td>
+                        <td><span class="category-tag">绿色制造</span></td>
+                        <td>山东省工信厅 / 财政厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td class="amount">50-200</td>
+                        <td>已获评省级及以上绿色工厂/绿色供应链管理企业；实施节能降碳改造项目；节能降碳效果显著且可量化</td>
+                        <td>绿色制造单位认定文件、节能降碳项目实施方案、能耗/碳排放监测报告、第三方审核报告</td>
+                        <td class="policy-ref"><a href="http://gxt.shandong.gov.cn/art/2026/3/30/art_15201_10356125.html" target="_blank" rel="noopener">山东省工信厅、财政厅《绿色制造单位节能降碳奖补资金管理办法》<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <tr data-level="province">
+                        <td>11</td>
+                        <td><strong>山东省工业互联网/数字化转型示范</strong></td>
+                        <td><span class="category-tag">数字化转型</span></td>
+                        <td>山东省工信厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td class="amount">100-300</td>
+                        <td>企业数字化转型成效显著；建成工业互联网平台或应用场景；具有行业示范性和可推广性</td>
+                        <td>数字化转型方案、平台建设材料、应用案例、效果评估报告、投入明细</td>
+                        <td class="policy-ref"><a href="http://www.sd.gov.cn/jpaas-jpolicy-web-server/front/info/detail?iid=3ded70e8c299438b8ced208ef31a6ed5" target="_blank" rel="noopener">《山东省工业互联网赋能制造业数字化转型资金管理办法及实施细则》<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+
+                    <!-- 市级项目 -->
+                    <tr data-level="city">
+                        <td>12</td>
+                        <td><strong>德州市科技创新奖励</strong></td>
+                        <td><span class="category-tag">科技创新</span></td>
+                        <td>德州市科技局</td>
+                        <td><span class="level-tag level-city">市级</span></td>
+                        <td class="amount">10-50</td>
+                        <td>技术成果达到国内领先及以上水平；已实现产业化应用并产生显著经济/社会效益；拥有自主知识产权</td>
+                        <td>科技奖励推荐书、技术评价/鉴定报告、经济效益证明、知识产权证明、应用证明</td>
+                        <td class="policy-ref"><a href="https://www.dezhou.gov.cn/n42860412/n42860896/c84905311/content.html" target="_blank" rel="noopener">《德州市科学技术奖励办法》<span class="ext-icon">&#8599;</span></a>；德州市科技局年度申报通知</td>
+                    </tr>
+                    <tr data-level="city">
+                        <td>13</td>
+                        <td><strong>德州市企业技术中心/工程研究中心认定</strong></td>
+                        <td><span class="category-tag">创新平台</span></td>
+                        <td>德州市发改委 / 科技局</td>
+                        <td><span class="level-tag level-city">市级</span></td>
+                        <td class="amount">20-50</td>
+                        <td>企业研发投入占比达标（一般不低于3%）；拥有专职研发人员；具备独立的研发场所和设备</td>
+                        <td>技术中心认定申请书、研发组织管理制度、研发人员名单、研发投入审计报告、研发成果清单</td>
+                        <td class="policy-ref"><a href="http://fgw.dezhou.gov.cn/n911460/c91427164/content.html" target="_blank" rel="noopener">《德州市企业技术中心认定管理办法》<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <tr data-level="city">
+                        <td>14</td>
+                        <td><strong>德州市高价值专利培育/知识产权资助</strong></td>
+                        <td><span class="category-tag">知识产权</span></td>
+                        <td>德州市市场监管局</td>
+                        <td><span class="level-tag level-city">市级</span></td>
+                        <td class="amount">10-30</td>
+                        <td>拥有有效发明专利；专利已实现产业化应用；近三年专利申请/授权数量持续增长</td>
+                        <td>专利证书及清单、专利实施证明（合同/发票）、专利价值评估报告、企业知识产权管理制度</td>
+                        <td class="policy-ref"><a href="https://www.dezhou.gov.cn/n1403/n6844/n63840895/n86421522/c86425198/content.html" target="_blank" rel="noopener">《德州市知识产权资助管理办法》<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+
+                    <!-- 区级项目 -->
+                    <tr data-level="district">
+                        <td>15</td>
+                        <td><strong>经济开发区企业创新发展奖</strong></td>
+                        <td><span class="category-tag">综合奖励</span></td>
+                        <td>德州经济开发区管委会</td>
+                        <td><span class="level-tag level-district">区级</span></td>
+                        <td class="amount">10-50</td>
+                        <td>注册并纳税在开发区内；年度营收/税收增长显著；对区域经济发展有突出贡献</td>
+                        <td>企业营业执照、年度纳税证明、财务报表、创新发展报告、社会贡献说明</td>
+                        <td class="policy-ref"><a href="http://jjjskfq.dezhou.gov.cn/n25300379/n33429483/n33431139/index.html" target="_blank" rel="noopener">德州经济开发区促进经济高质量发展若干政策<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <tr data-level="district">
+                        <td>16</td>
+                        <td><strong>经济开发区人才引进与培训补贴</strong></td>
+                        <td><span class="category-tag">人才建设</span></td>
+                        <td>德州经济开发区人社局</td>
+                        <td><span class="level-tag level-district">区级</span></td>
+                        <td class="amount">10-50</td>
+                        <td>引进高层次人才（博士/海归/行业专家）；建立人才培养体系；开展职工技能培训</td>
+                        <td>人才引进合同、学历证书、培训计划及记录、社保缴纳证明、人才工作站建设材料</td>
+                        <td class="policy-ref"><a href="http://hrss.dezhou.gov.cn/n49548076/n50048753/n50048769/index.html" target="_blank" rel="noopener">德州经济开发区人才强区政策<span class="ext-icon">&#8599;</span></a>；<a href="https://www.dezhou.gov.cn/n1403/n38391604/n38392197/n66411248/n66411338/n72323206/c72962494/content.html" target="_blank" rel="noopener">德州市高层次人才引进计划<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Summary table by level -->
+        <div style="margin-top: 30px;">
+            <h3 style="font-size: 17px; color: var(--primary); margin-bottom: 14px;">按层级汇总</h3>
+            <div class="info-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="info-item" style="border-left-color: #c0392b;">
+                    <div class="label">国家级（5项）</div>
+                    <div class="value" style="color: #c0392b;">1,100 - 2,900万+</div>
+                </div>
+                <div class="info-item" style="border-left-color: #2471a3;">
+                    <div class="label">省级（6项）</div>
+                    <div class="value" style="color: #2471a3;">1,250 - 3,800万</div>
+                </div>
+                <div class="info-item" style="border-left-color: #1e8449;">
+                    <div class="label">市级（3项）</div>
+                    <div class="value" style="color: #1e8449;">40 - 130万</div>
+                </div>
+                <div class="info-item" style="border-left-color: #6c3483;">
+                    <div class="label">区级（2项）</div>
+                    <div class="value" style="color: #6c3483;">20 - 100万</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Policy Section -->
+    <div class="section" id="policy">
+        <div class="section-title">
+            <div class="icon">6</div>
+            政策依据汇总
+        </div>
+
+        <div class="card policy-card">
+            <h3>国家级政策文件</h3>
+            <div style="margin-top: 12px; font-size: 14px; line-height: 2.2;">
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>1.</strong> <a href="https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2016/art_4f38b2d8398744d68c480f53bf2d65ed.html" target="_blank" rel="noopener">《制造业单项冠军企业培育提升专项行动实施方案》（工信部产业〔2016〕105号）<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>2.</strong> <a href="https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_4d49856593b14d9bb89c88056365debf.html" target="_blank" rel="noopener">《绿色工厂评价通则》及年度绿色制造名单推荐通知<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>3.</strong> <a href="https://wap.miit.gov.cn/jgsj/zbys/wjfb/art/2021/art_f3952b4a7d0941609d94262da9891542.html" target="_blank" rel="noopener">《"十四五"智能制造发展规划》（工信部联规〔2021〕207号）<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>4.</strong> <a href="https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/gfxwj/gfxwj2024/202404/t20240422_190406.html" target="_blank" rel="noopener">《国家重点研发计划管理暂行办法》（2024年修订版）<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>5.</strong> <a href="https://www.gov.cn/zhengce/content/202403/content_6939232.htm" target="_blank" rel="noopener">《推动大规模设备更新和消费品以旧换新行动方案》（国发〔2024〕7号）<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>6.</strong> <a href="https://www.cnipa.gov.cn/col/col2728/index.html" target="_blank" rel="noopener">国家知识产权优势企业和示范企业培育相关文件<span class="ext-icon">&#8599;</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card policy-card">
+            <h3>山东省级政策文件</h3>
+            <div style="margin-top: 12px; font-size: 14px; line-height: 2.2;">
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>1.</strong> <a href="http://gxt.shandong.gov.cn/art/2025/4/16/art_15201_10349534.html" target="_blank" rel="noopener">《山东省制造业创新中心建设工作指引》<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>2.</strong> <a href="http://gxt.shandong.gov.cn/art/2026/5/14/art_15201_10356890.html" target="_blank" rel="noopener">《山东省首台（套）技术装备及关键核心零部件项目认定管理办法》<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>3.</strong> <a href="http://gxt.shandong.gov.cn/art/2026/4/29/art_15201_10356658.html" target="_blank" rel="noopener">《山东省工业企业技术改造升级导向目录》<span class="ext-icon">&#8599;</span></a>及<a href="http://fgw.shandong.gov.cn/art/2023/9/27/art_91572_10414894.html" target="_blank" rel="noopener">"技改专项贷"贴息实施细则<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>4.</strong> <a href="http://gxt.shandong.gov.cn/art/2026/6/2/art_15201_10357290.html" target="_blank" rel="noopener">山东省工业和信息化领域设备更新奖补政策实施细则<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>5.</strong> <a href="http://gxt.shandong.gov.cn/art/2026/3/30/art_15201_10356125.html" target="_blank" rel="noopener">山东省工信厅、财政厅《绿色制造单位节能降碳奖补资金管理办法》<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>6.</strong> <a href="http://www.sd.gov.cn/jpaas-jpolicy-web-server/front/info/detail?iid=3ded70e8c299438b8ced208ef31a6ed5" target="_blank" rel="noopener">《山东省工业互联网赋能制造业数字化转型资金管理办法及实施细则》<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>7.</strong> <a href="http://www.sd.gov.cn/art/2026/4/20/art_100623_47390.html" target="_blank" rel="noopener">《山东省化工产业数智化改造标杆奖补政策实施细则》<span class="ext-icon">&#8599;</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card policy-card">
+            <h3>德州市及区级政策文件</h3>
+            <div style="margin-top: 12px; font-size: 14px; line-height: 2.2;">
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>1.</strong> <a href="https://www.dezhou.gov.cn/n42860412/n42860896/c84905311/content.html" target="_blank" rel="noopener">《德州市科学技术奖励办法》<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>2.</strong> <a href="http://fgw.dezhou.gov.cn/n911460/c91427164/content.html" target="_blank" rel="noopener">《德州市企业技术中心认定管理办法》<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>3.</strong> <a href="https://www.dezhou.gov.cn/n1403/n6844/n63840895/n86421522/c86425198/content.html" target="_blank" rel="noopener">《德州市知识产权资助管理办法》<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>4.</strong> <a href="http://jjjskfq.dezhou.gov.cn/n25300379/n33429483/n33431139/index.html" target="_blank" rel="noopener">德州经济开发区促进经济高质量发展若干政策<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>5.</strong> <a href="https://www.dezhou.gov.cn/n1403/n38391604/n38392197/n66411248/n66411338/n72323206/c72962494/content.html" target="_blank" rel="noopener">德州市高层次人才引进计划及人才强区政策<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>6.</strong> <a href="https://dezhou.gov.cn/n42860412/n42860956/n42952242/c96388998/content.html" target="_blank" rel="noopener">德州市关于支持先进制造业高质量发展的若干措施<span class="ext-icon">&#8599;</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="card" style="background: #fffbeb; border-color: #f5deb3; margin-top: 20px;">
+        <h3 style="color: #b8860b;">&#9888;&#65039; 重要提示</h3>
+        <p style="font-size: 13px; color: #8b7355; margin-top: 8px;">
+            本清单所列信息基于公开资料整理，仅供参考。具体申报条件、奖补金额和时间节点以各级主管部门发布的最新官方文件为准。建议企业密切关注工信部、科技部、山东省工信厅、德州市相关部门的年度申报通知，提前做好材料准备。预计奖补金额可能因政策调整而变化，部分项目奖补金额需根据实际投资额计算。
+        </p>
+    </div>
+
+</div>
+
+<div class="footer">
+    景津装备股份有限公司 &middot; 2026年度奖补项目申报清单 &middot; 仅供内部参考使用 &middot; 编制日期：2026年6月
+</div>
+
+<script>
+    // Navigation scroll highlight
+    document.querySelectorAll('.nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Filter table
+    function filterTable(level) {
+        const rows = document.querySelectorAll('#projectTable tbody tr');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        rows.forEach(row => {
+            if (level === 'all' || row.dataset.level === level) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // Scroll spy for navigation
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav a');
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 140;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
